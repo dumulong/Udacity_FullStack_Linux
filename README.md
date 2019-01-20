@@ -124,6 +124,12 @@ sudo ufw allow 2200/tcp
 sudo ufw allow www
 sudo ufw enable
 ```
+Now, we need to remove the remote login for the root.
+Edit the file **/etc/ssh/sshd_config** and change the line refereing to PermitRootLogin to the following code:
+```
+PermitRootLogin no
+AllowUsers grader
+```
 
 Now, time to stat with the website.  Install the following packages:
 
