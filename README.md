@@ -34,7 +34,7 @@ Python packages (PIP):
 
 ## Configuration change:
 
-Adding a new user (pickmeup)
+Adding a new user
 ```
 sudo adduser grader
 ```
@@ -47,15 +47,15 @@ Now edit and change "ubuntu" to "grader"
 sudo nano /etc/sudoers.d/grader
 ```
 
-now, we need to be able to login in the "grader"'s account, so let temporarely set the ssh configuration to accept passwords:
+Now, we need to be able to login in the "grader"'s account, so let temporarely set the ssh configuration to accept passwords:
 ```
 sudo nano /etc/ssh/sshd_config
 ```
 And change the line "PasswordAuthentication no" to "PasswordAuthentication yes"
 
-use the console to reboot
+Use the console to reboot
 
-now using the command prompt (enter password):
+Now using the command prompt (enter password):
 ```
 ssh grader@3.89.214.99 -p 22
 ```
