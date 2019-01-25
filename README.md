@@ -53,7 +53,10 @@ sudo nano /etc/ssh/sshd_config
 ```
 And change the line "PasswordAuthentication no" to "PasswordAuthentication yes"
 
-Use the console to reboot
+Restart the SSH service
+```
+sudo service ssh restart
+```
 
 Now using the command prompt (enter password):
 ```
@@ -84,13 +87,15 @@ chmod 700 .ssh
 chmod 644 .ssh/authorized_keys
 ```
 
-
 now disable the password based authentication to only allow key based.
 sudo nano /etc/ssh/sshd_config
 
 And change the line "PasswordAuthentication yes" to "PasswordAuthentication no"
 
-use the console to reboot
+Restart the SSH service
+```
+sudo service ssh restart
+```
 
 Now use the key to login:
 ```
@@ -107,7 +112,10 @@ sudo nano /etc/ssh/sshd_config
 
 Uncomment port 22 and change to port 2200
 
-use the console to reboot
+Restart the SSH service
+```
+sudo service ssh restart
+```
 
 You should be now able to ssh with port 2200:
 
@@ -143,12 +151,12 @@ sudo apt-get install libapache2-mod-wsgi
 
 Refresh the packages repository
 ```
-sudo apt update
+sudo apt-get update
 ```
 
 Finally, go through with the updates:
 ```
-sudo apt upgrade
+sudo apt-get upgrade
 ```
 
 Install the python packages needed for the catalog website:
@@ -193,6 +201,8 @@ application.secret_key = 'Add your secret key'
 ```
 Then we need to configure apache to pick up that file.  We did that by modifying the file **/etc/apache2/sites-enabled/000-default.conf** to include the following code:
 ```
+WSGIDaemonProcess catalog user=grader group=grader threads=5
+
 WSGIScriptAlias /catalog /var/www/html/catalog/application.wsgi
 
 <Directory /var/www/html/catalog>
@@ -202,6 +212,12 @@ WSGIScriptAlias /catalog /var/www/html/catalog/application.wsgi
     Allow from all
 </Directory>
 ```
+
+Restart the Apache service
+```
+sudo service apache2 restart
+```
+
 Et Voila!
 
 ## Third party resources:
